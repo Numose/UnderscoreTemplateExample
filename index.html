@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Underscore Template Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  </head>
+  
+  <body>
+    
+    <header>
+      <div class="center">
+        <h1>Twittling</h1>
+        <button id="btn_rmv">0</button>
+        <button id="btn_add">+</button>
+      </div>
+    </header>
+    
+    <div class="main">
+      <div class="center">
+        <!-- here's the container where the templates will get appended to -->
+        <div id="feed">  
+          
+          <!-- this is the template in the html that will be replicated -->
+          <!-- make sure to set the type of the script to "text/template" so that the browser ignores this onload -->
+          <script type="text/template" class="template">
+            <!-- the insertion syntax is < % - % > to insert variables directly or < % % > to run JS logic in the template -->
+            <!-- here's inserting a variable value into a div from the collection item -->
+            <div class="post" data-id="<%- item.id %>">
+              <!-- you can also insert values into element attributes -->
+              <img src="<%- item.userImg %>"/>
+              <div class="post-data">
+                <!-- here's an example of the < % % > notation used for JS logic -->
+                <!-- we're using the if statement to decide what to render in each template instance -->
+                <!-- note the enclosing < % % > to close the if statement -->
+                <% if (item.userName) { %>
+                  <span class="post-name"><a href="#" data-name="<%- item.userName %>"><%- item.userName %></a></span>
+                <% } else { %>
+                  <span class="post-name">Unknown</span>
+                <% } %>
+                <span class="post-msg"><%- item.msg %></span>
+              </div>
+            </div>
+          </script>
+          <!-- end of template -->
+        
+        </div>
+      </div>
+    </div>
+
+    <!-- load scripts, make sure to include jQuery and Underscore; these CDN URL's might be out of data -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <script>
+      (function() {
+        
+        // set up underscore template variable
+        _.templateSettings.variable = 'item'; // call this something meaningful as it will be used as the base for your template variables
+        
+        // this is what hooks into the template in the HTML above
+        var template = _.template(
+          $('script.template').html()
+        );
+
+        // dummy data for this example, each object in the array is an indivdual tweet; sorry if the image links are broken!
+        var tweets = [
+          {id: 'wer2erg', userName: 'Rick Ashtley', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'never gonna give you up, never gonna let you down'},
+          {id: 'sefqwef', userName: 'Psy', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'opa gandam style'},
+          {id: '4f34f3f', userName: 'Robin', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'One More Thing!'},
+          {id: 'sdfvahg', userName: 'Connor', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'Slytherin 4LYFE'},
+          {id: '786785j', userName: 'Justine', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'it\'ll be fine...'},
+          {id: 'r6jgfhu', userName: 'Andrew', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'thanks for checking out this repo!'},
+          {id: 'dfgh5h5', userName: 'Natalie', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'New York, New York'},
+          {id: 'srft67s', userName: 'Johanna', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'At least you tried...'},
+          {id: 'rt54hgw', userName: 'Li-Ming', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'Should we even be here?!'},
+          {id: 'gh34434', userName: 'angry peon', userImg: 'https://success.salesforce.com/resource/1473465600000/sharedlayout/img/new-user-image-default.png', msg: 'zug zug'}
+        ];
+
+        // iterate over the collection and pass each item into the template rendering function
+        var renderTweets = function() {
+          _.each(_.shuffle(tweets), function(tweet) {
+            $('#feed').prepend(template(tweet));
+            $('div.post').fadeIn(800);
+          });
+        };
+        renderTweets();
+
+        
+        // render 10 more results
+        $('body').on('click', 'button#btn_add', function(e) {
+          e.preventDefault();
+          renderTweets();
+        });
+
+        // remove all results
+        $('body').on('click', 'button#btn_rmv', function(e) {
+          e.preventDefault();
+          $('#feed').html('');
+        }); 
+
+      })();
+    </script>
+
+  </body>
+
+</html>
