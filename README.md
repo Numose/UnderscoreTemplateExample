@@ -37,7 +37,7 @@ To progress from here in a meaningful way, you’ll want to get your hands on th
 
 In my example code I used a local array of objects that represent tweets, but you’ll most likely get your data from a web API. If for some reason you aren’t able to get real data you can always create a mock from specs and set it up the way I did until it becomes available.
 
-If the data is available, you can use [jQuery’s `$.ajax` method](http://api.jquery.com/jquery.ajax/) to retrieve it asynchronously then simply hand it to your engine.
+If the data is available, you can use [jQuery’s $.ajax method](http://api.jquery.com/jquery.ajax/) to retrieve it asynchronously then simply hand it to your engine.
 
 ##Step 3: Build Out the Engine
 
@@ -102,13 +102,13 @@ The final step in the templating process is to construct the actual template tha
 To start, insert some script tags into the `<body>` element of the html. It is really important to make sure to use the text/template script type in the `<script>` tag attribute signature. Classifying the script this way will cause the browser’s parser to skip over this section of your html when it loads initially. It won’t recognize it and so simply avoid it and move on, a handy technique used by many of the larger frameworks as well.
 
 ```html
-// other content, header, nav, etc.
+<!-- other content, header, nav, etc. -->
 
 <script type="text/template" class="template">
-  // template body
+  <!-- template body -->
 </script>
 
-// other content in the body, footer div, etc.
+<!-- other content in the body, footer div, etc. -->
 ```
 
 Compose the body of the template as you would any component of your page using regular HTML elements and attributes.
@@ -119,7 +119,7 @@ Compose the body of the template as you would any component of your page using r
     <img src="" />
     <div class="post-data">
       <a class="post-name" href="#"><!--post name--></a>
-      <span class="post-msg">//message body</span>
+      <span class="post-msg"><!--message body--></span>
     </div>
   </div>
 </script>
