@@ -88,6 +88,19 @@
         };
         renderTweets();
 
+        // example AJAX request, will error in the console, insert options to get it working
+        $.ajax({
+          url: 'http://www.example.com/api-endpoint',
+          type: 'GET',
+          success: function(data) {
+            renderTweets(data);
+          },
+          error: function(err) {
+            console.error('something broke with the ajax request, you probably need to get it set up with real options');
+          }
+        });
+
+        // // // styling stuff, not functional components // // //
         
         // render 10 more results
         $('body').on('click', 'button#btn_add', function(e) {
