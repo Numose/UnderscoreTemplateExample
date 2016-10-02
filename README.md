@@ -1,8 +1,8 @@
-![Underscore Template Example 'Twittling'](http://i.imgur.com/NQQ2M2b.png)
-
 #Coding Simple Data Views with Underscore.js Templates
 
-JavaScript, HTML, CSS knowledge for this project is Beginner.
+![Underscore Template Example 'Twittling'](http://i.imgur.com/NQQ2M2b.png)
+
+**JavaScript, HTML, CSS knowledge for this project is Beginner.**
 
 [Link to Blog Post](https://medium.com/p/c6fa41fba099)
 
