@@ -148,7 +148,7 @@ Next, have a look at your data and figure out what display logic is needed. `_.t
     <img src="<%- item.userImg %>" />
     <div class="post-data">
     <% if (item.userName) { %>
-      <a href="#" class="...><%- item.userName %></a>
+      <a href="#" class="..."><%- item.userName %></a>
     <% } else { %>
       <span class="...">Unknown User</span>
     <% } %>
